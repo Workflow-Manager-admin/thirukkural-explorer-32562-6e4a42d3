@@ -1,10 +1,12 @@
 :root {
-  --base-light: #00ffff;
-  --base-dark: #00008b;
+  --primary: #2D3A4A;
+  --secondary: #F5F5F5;
+  --accent: #C19A6B;
   --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
+  --text-light: #333333;
+  --border-color: rgba(255,255,255,0.08);
 }
+
 
 body {
   margin: 0;
