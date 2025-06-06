@@ -16,10 +16,10 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Faded Thiruvalluvar BG */
+  /* Faded Thiruvalluvar BG - imported via CSS variable injected by React */
   background-image:
     linear-gradient(rgba(45,58,74,var(--bg-opacity)), rgba(45,58,74,var(--bg-opacity))),
-    url('./assets/thiruvalluvar-bg.png');
+    var(--thiruvalluvar-bg, none);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center bottom;
