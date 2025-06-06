@@ -11,10 +11,21 @@
 body {
   margin: 0;
   font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-color: var(--base-dark);
+  background-color: var(--primary);
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  /* App-wide BG: subtle, faded, Thiruvalluvar image. */
+  background-image:
+    linear-gradient(rgba(45,58,74,0.90), rgba(45,58,74,0.92)),
+    url('./assets/thiruvalluvar-bg.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-attachment: fixed;
+  /* Ensure image is subtle on all screens */
+  opacity: 1;
 }
 
 .app {
