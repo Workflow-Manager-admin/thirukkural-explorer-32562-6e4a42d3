@@ -5,40 +5,96 @@
   --text-color: #ffffff;
   --text-light: #333333;
   --border-color: rgba(255,255,255,0.08);
+  --bg-opacity: 0.92;
 }
-
 
 body {
   margin: 0;
   font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
   background-color: var(--primary);
   color: var(--text-color);
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
-  /* App-wide BG: subtle, faded, Thiruvalluvar image. */
+  /* Faded Thiruvalluvar BG */
   background-image:
-    linear-gradient(rgba(45,58,74,0.90), rgba(45,58,74,0.92)),
+    linear-gradient(rgba(45,58,74,var(--bg-opacity)), rgba(45,58,74,var(--bg-opacity))),
     url('./assets/thiruvalluvar-bg.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center bottom;
   background-attachment: fixed;
-  /* Ensure image is subtle on all screens */
   opacity: 1;
 }
 
+/* Universal classes, box sizing reset is in index.css */
+
+/* ----------- Layout Container -------- */
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: transparent;
 }
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-/* Navigation Bar */
+/* ----------- Typography ----------- */
+.subtitle {
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 1.15rem;
+  margin-bottom: 2px;
+}
+.title {
+  font-size: 3.2rem;
+  font-weight: 600;
+  line-height: 1.16;
+  margin: 0 0 16px 0;
+  word-break: break-word;
+  letter-spacing: -0.5px;
+}
+.description {
+  font-size: 1.11rem;
+  line-height: 1.55;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto 16px;
+}
+
+/* Responsive headings */
+@media (max-width: 700px) {
+  .title { font-size: 2.1rem; }
+  .subtitle { font-size: 1.02rem;}
+  .container { padding: 0 8px; }
+}
+@media (max-width: 420px) {
+  .title { font-size: 1.4rem; }
+}
+
+/* ---------- Hero section & page layout --------- */
+.hero {
+  padding-top: 120px;
+  padding-bottom: 64px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+@media (max-width: 600px) {
+  .hero { padding-top: 84px; padding-bottom: 32px; gap: 18px; }
+}
+
+/* ----------- Navigation Bar ----------- */
 .navbar {
   background-color: var(--primary);
-  padding: 16px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -49,61 +105,219 @@ body {
   box-sizing: border-box;
   z-index: 100;
 }
-
 .logo {
   font-size: 1.25rem;
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 8px;
+  color: var(--text-color);
 }
-
 .logo-symbol {
   color: var(--accent);
 }
 
-/* Container */
-.container {
-  max-width: 900px;
+/* -------------- Home Page Layout -------------- */
+.home-page-main {
+  max-width: 880px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 12px 44px 12px;
+}
+.athigaaram-list {
   width: 100%;
-  box-sizing: border-box;
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  margin: 16px 0 36px;
+}
+@media (max-width: 820px) {
+  .home-page-main { max-width: none; padding: 0 2px 28px 2px;}
+}
+@media (max-width: 520px) {
+  .athigaaram-list { grid-template-columns: 1fr; gap: 14px;}
+}
+@media (max-width:360px) {
+  .home-page-main { padding-left: 1px; padding-right: 1px;}
 }
 
-/* Hero section */
-.hero {
-  padding-top: 120px;
-  padding-bottom: 64px;
-  text-align: center;
+/* ------------- Cards and Lists (AthigaaramCard) ------------- */
+.athigaaram-card {
+  background: var(--secondary);
+  border-radius: 7px;
+  box-shadow: 0 2px 12px rgba(45,58,74,0.05);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1.5px solid var(--border-color);
+  transition: box-shadow 0.16s;
+}
+.athigaaram-card:focus-within, .athigaaram-card:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.athigaaram-title {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--primary);
+  font-size: 1.14rem;
+  font-weight: 600;
+  padding: 22px 24px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: background 0.12s;
+  border-radius: 7px 7px 0 0;
+}
+.athigaaram-title:hover, .athigaaram-title:focus {
+  background: rgba(193, 154, 107, 0.055);
+}
+.kurals-list {
+  padding: 18px 22px 18px 32px;
+  background: #fffaf5;
+  animation: fadeinKural 0.22s;
+}
+@keyframes fadeinKural {
+  0% { opacity: 0; transform: translateY(-7px);}
+  100%{opacity:1; transform: translateY(0);}
+}
+.kural-entry {
+  margin-bottom: 18px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #f1e8de;
+}
+.kural-entry:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.kural-tamil {
+  font-family: 'Noto Sans Tamil', 'Latha', Arial, sans-serif;
+  font-size: 1.11rem;
+  font-weight: 500;
+  color: #2d3a4a;
+  margin-bottom: 2px;
+}
+.kural-english {
+  font-size: 1.02rem;
+  color: #785e38;
+  margin-bottom: 2px;
+}
+.kural-expl {
+  font-size: 0.98rem;
+  color: #555;
+}
+@media (max-width: 600px) {
+  .athigaaram-title { font-size: 1.01rem; padding: 14px 10px;}
+  .kurals-list { padding: 12px 7px 12px 14px;}
+  .kural-entry { margin-bottom: 14px; }
+}
+.kural-empty { color: #888; padding: 9px; font-size: 0.97rem; }
+
+/* ------------- QUIZ COMPONENTS ------------- */
+.quiz-question-card {
+  background: var(--secondary);
+  border-radius: 8px;
+  box-shadow: 0 2px 14px rgba(45,58,74,0.10);
+  padding: 28px 16px 20px;
+  max-width: 520px;
+  margin: 0 auto 20px;
+  border: 1.5px solid var(--border-color);
+}
+.quiz-qn-text {
+  font-size: 1.22rem;
+  color: var(--primary);
+  font-weight: 560;
+  margin-bottom: 22px;
+  text-align: left;
+}
+.quiz-options-list {
   display: flex;
   flex-direction: column;
+  gap: 0;
+}
+.quiz-option-btn {
+  display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 14px;
+  width: 100%;
+  background: #fffaf5;
+  border: 2px solid #e7d4c0;
+  color: #412d12;
+  font-size: 1.07rem;
+  border-radius: 5px;
+  padding: 11px 18px;
+  cursor: pointer;
+  outline: none;
+  transition: border 0.13s, background 0.16s;
+  margin-bottom: 10px;
 }
-
-.subtitle {
-  color: var(--accent);
-  font-weight: 500;
-  font-size: 1.1rem;
+.quiz-option-btn:not(:disabled):hover,
+.quiz-option-btn:not(:disabled):focus {
+  border-color: var(--accent);
+  background: #f7ece3;
 }
-
-.title {
-  font-size: 3.5rem;
+.quiz-option-btn.selected {
+  border-color: var(--accent);
+  background: #faede0;
+  color: #2d3a4a;
   font-weight: 600;
-  line-height: 1.2;
-  margin: 0;
+}
+.quiz-option-btn.correct {
+  border: 2.5px solid #22a568;
+  color: #199a57;
+}
+.quiz-option-btn.incorrect {
+  border: 2.5px solid #c71e1e;
+  color: #c71e1e;
+  background: #ffeded;
+}
+.quiz-option-label {
+  font-size: 1.14em;
+  font-weight: 500;
+  margin-right: 8px;
+  display: inline-block;
+  min-width: 24px;
+  color: var(--accent);
+}
+.quiz-option-text { text-align: left; }
+.quiz-feedback {
+  margin-top: 14px;
+  padding: 11px 13px;
+  border-radius: 6px;
+  background: #ebf7f3;
+  color: #1c5c31;
+  font-weight: 520;
+  font-size: 1.02rem;
+}
+.quiz-feedback.incorrect {
+  background: #ffe3e0;
+  color: #a0352d;
+}
+.quiz-qn-expl {
+  font-size: 0.98em;
+  font-weight: 400;
+  color: #985f0d;
+}
+@media (max-width: 600px) {
+  .quiz-question-card { padding: 16px 2vw 14px; max-width: 99vw;}
+  .quiz-qn-text { font-size: 1.07rem; }
 }
 
-.description {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: var(--text-light);
-  max-width: 600px;
-  margin-bottom: 16px;
+/* Quiz progress and finishing/descriptive text */
+.quiz-progress {
+  margin: 14px 0 24px;
+  color: var(--accent);
+  font-weight: 480;
+}
+@media (max-width: 600px) {
+  .quiz-progress { font-size: 0.99em; margin-bottom: 13px;}
 }
 
-/* Buttons */
+
+/* ----------- Buttons ----------- */
 .btn {
   background-color: var(--accent);
   color: #fff;
@@ -113,29 +327,76 @@ body {
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s;
   box-shadow: 0 2px 8px rgba(45, 58, 74, 0.05);
+  min-width: 44px;
+  min-height: 44px;
 }
-
-.btn:hover {
+.btn:hover, .btn:focus {
   background-color: #b58751;
 }
-
-/* Outline variant (for inactive NavLink) */
+.btn:active {
+  background-color: #a17349;
+}
+.btn[disabled] {
+  background: #ded0c4;
+  color: #a08971;
+  cursor: not-allowed;
+}
 .btn.btn-outline {
   background-color: transparent;
   color: var(--accent);
   border: 2px solid var(--accent);
   box-shadow: none;
 }
-
-.btn.btn-outline:hover {
+.btn.btn-outline:hover,
+.btn.btn-outline:focus {
   background-color: var(--accent);
   color: #fff;
 }
-
-/* Large button variant */
 .btn-large {
   padding: 12px 24px;
-  font-size: 1.1rem;
+  font-size: 1.11rem;
+  min-width: 56px;
+  min-height: 52px;
+}
+
+/* --------------- Accessibility focus ring ----------- */
+:focus-visible, .btn:focus-visible, .nav-link:focus-visible {
+  outline: 2.5px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Hide scrollbars on cards for visual polish (not ARIA) */
+.athigaaram-card, .quiz-question-card {
+  scrollbar-width: thin;
+  scrollbar-color: #bfa472 #f5f5f5;
+}
+.athigaaram-card::-webkit-scrollbar,
+.quiz-question-card::-webkit-scrollbar {
+  width: 6px;
+  background: #f5f5f5;
+}
+.athigaaram-card::-webkit-scrollbar-thumb,
+.quiz-question-card::-webkit-scrollbar-thumb {
+  background: #bea779;
+  border-radius: 3px;
+}
+
+/* Prevent overlap on fixed Nav */
+main { padding-top: 80px; }
+@media (max-width:720px){ main { padding-top: 60px; } }
+
+/* --------------- Miscellaneous utility --------------- */
+.sr-only { /* Screen reader only text utility */
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+::-webkit-selection, ::selection {
+  background: #edd4ae;
+  color: #2D3A4A;
 }
