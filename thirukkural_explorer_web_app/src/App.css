@@ -32,10 +32,12 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: transparent;
 }
 
+/* Navigation Bar */
 .navbar {
-  background-color: var(--base-dark);
+  background-color: var(--primary);
   padding: 16px;
   display: flex;
   align-items: center;
@@ -57,9 +59,10 @@ body {
 }
 
 .logo-symbol {
-  color: var(--base-light);
+  color: var(--accent);
 }
 
+/* Container */
 .container {
   max-width: 900px;
   margin: 0 auto;
@@ -68,6 +71,7 @@ body {
   box-sizing: border-box;
 }
 
+/* Hero section */
 .hero {
   padding-top: 120px;
   padding-bottom: 64px;
@@ -79,7 +83,7 @@ body {
 }
 
 .subtitle {
-  color: var(--base-light);
+  color: var(--accent);
   font-weight: 500;
   font-size: 1.1rem;
 }
@@ -94,14 +98,15 @@ body {
 .description {
   font-size: 1.1rem;
   line-height: 1.5;
-  color: var(--text-secondary);
+  color: var(--text-light);
   max-width: 600px;
   margin-bottom: 16px;
 }
 
+/* Buttons */
 .btn {
-  background-color: var(--base-light);
-  color: white;
+  background-color: var(--accent);
+  color: #fff;
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
@@ -109,12 +114,14 @@ body {
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  box-shadow: 0 2px 8px rgba(45, 58, 74, 0.05);
 }
 
 .btn:hover {
-  background-color: #7691ff;
+  background-color: #b58751;
 }
 
+/* Large button variant */
 .btn-large {
   padding: 12px 24px;
   font-size: 1.1rem;
