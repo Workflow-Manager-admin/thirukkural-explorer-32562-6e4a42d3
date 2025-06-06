@@ -121,6 +121,19 @@ body {
   background-color: #b58751;
 }
 
+/* Outline variant (for inactive NavLink) */
+.btn.btn-outline {
+  background-color: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  box-shadow: none;
+}
+
+.btn.btn-outline:hover {
+  background-color: var(--accent);
+  color: #fff;
+}
+
 /* Large button variant */
 .btn-large {
   padding: 12px 24px;
