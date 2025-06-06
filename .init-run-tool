@@ -1,0 +1,4 @@
+{
+    "command": "PORT=<port> BROWSER=none npm start",
+    "working_directory": "/home/kavia/workspace/code-generation/thirukkural-explorer-32562-6e4a42d3/thirukkural_explorer_web_app"
+}
